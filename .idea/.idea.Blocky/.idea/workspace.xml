@@ -20,20 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="661282cf-2331-4f67-adeb-62e2426765f8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Blocky/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Blocky/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Blocky/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Blocky/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.import/atlas.png-7b6d701721d40511b9cfca52325841a7.etc2.stex" beforeDir="false" afterPath="$PROJECT_DIR$/.import/atlas.png-7b6d701721d40511b9cfca52325841a7.etc2.stex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.import/atlas.png-7b6d701721d40511b9cfca52325841a7.md5" beforeDir="false" afterPath="$PROJECT_DIR$/.import/atlas.png-7b6d701721d40511b9cfca52325841a7.md5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.import/atlas.png-7b6d701721d40511b9cfca52325841a7.s3tc.stex" beforeDir="false" afterPath="$PROJECT_DIR$/.import/atlas.png-7b6d701721d40511b9cfca52325841a7.s3tc.stex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/metadata/ide_messaging_meta.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/ide_messaging_meta.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor_player" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor_player" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/bin/Debug/Blocky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/bin/Debug/Blocky.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/bin/Debug/Blocky.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/bin/Debug/Blocky.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mono/temp/obj/Debug/Blocky.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/Debug/Blocky.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/obj/Debug/Blocky.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/Debug/Blocky.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/obj/Debug/Blocky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/Debug/Blocky.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/obj/Debug/Blocky.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/Debug/Blocky.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/rider.project.restore.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chunk.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chunk.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Orbit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Orbit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Root.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Root.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/atlas.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/atlas.png.import" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +51,8 @@
       <list>
         <option value="$PROJECT_DIR$/FastNoise.cs" />
         <option value="$PROJECT_DIR$/Orbit.cs" />
+        <option value="$PROJECT_DIR$/BlockSide.cs" />
+        <option value="$PROJECT_DIR$/Block.cs" />
         <option value="$PROJECT_DIR$/Chunk.cs" />
       </list>
     </option>
@@ -61,6 +66,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
   </component>
   <component name="RunManager" selected="Start and Debug.Player">
     <configuration name="Attach to Player" type="ConnectRemote" factoryName="Mono Remote" show_console_on_std_err="false" show_console_on_std_out="false" port="23685" address="localhost">
@@ -103,7 +109,7 @@
       <workItem from="1604318491641" duration="5865000" />
       <workItem from="1604324425280" duration="5792000" />
       <workItem from="1604766914515" duration="1291000" />
-      <workItem from="1604920827759" duration="7434000" />
+      <workItem from="1604920827759" duration="18495000" />
     </task>
     <servers />
   </component>
@@ -127,22 +133,26 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2517" height="413" key="GridCell.Tab.0.bottom" timestamp="1604926556681">
+    <state width="2517" height="413" key="GridCell.Tab.0.bottom" timestamp="1604942206687">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2517" height="413" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1604926556681" />
-    <state width="2517" height="413" key="GridCell.Tab.0.center" timestamp="1604926556680">
+    <state width="2517" height="413" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1604942206687" />
+    <state width="2517" height="413" key="GridCell.Tab.0.center" timestamp="1604942206687">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2517" height="413" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1604926556680" />
-    <state width="2517" height="413" key="GridCell.Tab.0.left" timestamp="1604926556680">
+    <state width="2517" height="413" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1604942206687" />
+    <state width="2517" height="413" key="GridCell.Tab.0.left" timestamp="1604942206687">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2517" height="413" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1604926556680" />
-    <state width="2517" height="413" key="GridCell.Tab.0.right" timestamp="1604926556680">
+    <state width="2517" height="413" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1604942206687" />
+    <state width="2517" height="413" key="GridCell.Tab.0.right" timestamp="1604942206687">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2517" height="413" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1604926556680" />
+    <state width="2517" height="413" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1604942206687" />
+    <state x="781" y="365" key="SettingsEditor" timestamp="1604936243261">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="781" y="365" key="SettingsEditor/0.0.2560.1440@0.0.2560.1440" timestamp="1604936243261" />
     <state x="943" y="325" width="672" height="678" key="search.everywhere.popup" timestamp="1604928075679">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>

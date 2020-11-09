@@ -1,27 +1,22 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using Godot.Collections;
 
 public class Chunk : Node
 {
-	public static int chunkWidth = 16;
-	public static int chunkHeight = 16;
-	public static int chunkDepth = 16;
+	public static int CHUNK_WIDTH = 16;
+	public static int CHUNK_HEIGHT = 16;
+	public static int CHUNK_DEPTH = 16;
 	
-	private BlockType[,,] blocks = new BlockType[chunkWidth, chunkHeight, chunkDepth];
+	private Block.BlockType[,,] _blocks = new Block.BlockType[CHUNK_WIDTH, CHUNK_HEIGHT, CHUNK_DEPTH];
 	
-	FastNoiseLite noise = new FastNoiseLite();
+	FastNoiseLite _noise = new FastNoiseLite();
 
-	private enum BlockType
-	{
-		AIR,
-		STONE,
-		DIRT,
-		GRASS
-	}
 	// Start
 	public override void _Ready()
 	{
-		noise.SetFrequency(0.01f);
+		_noise.SetFrequency(0.01f);
 
 		GenerateTerrain();
 		GenerateMesh();
@@ -29,14 +24,22 @@ public class Chunk : Node
 
 	private void GenerateTerrain()
 	{
-		for (int x = 0; x < chunkWidth; x++)
+		for (int x = 0; x < CHUNK_WIDTH; x++)
 		{
-			for (int z = 0; z < chunkDepth; z++)
+			for (int z = 0; z < CHUNK_DEPTH; z++)
 			{
-				float thisNoise = noise.GetNoise(x, z) * 4f;
+				float thisNoise = _noise.GetNoise(x, z) * 4f;
 				for (int y = 0; y < thisNoise + 8; y++)
 				{
-					blocks[x, y, z] = BlockType.STONE;
+					_blocks[x, y, z] = Block.BlockType.STONE;
+					if (y + 4 > thisNoise + 8)
+					{
+						_blocks[x, y, z] = Block.BlockType.DIRT;
+					}
+					if (y + 1 > thisNoise + 8)
+					{
+						_blocks[x, y, z] = Block.BlockType.GRASS;
+					}
 				}
 			}
 		}
@@ -52,37 +55,37 @@ public class Chunk : Node
 		st.Begin(Mesh.PrimitiveType.Triangles);
 		st.SetMaterial(mat);
 		
-		for (int x = 0; x < chunkWidth; x++)
+		for (int x = 0; x < CHUNK_WIDTH; x++)
 		{
-			for (int z = 0; z < chunkDepth; z++)
+			for (int z = 0; z < CHUNK_DEPTH; z++)
 			{
-				for (int y = 0; y < chunkHeight; y++)
+				for (int y = 0; y < CHUNK_HEIGHT; y++)
 				{
-					if (blocks[x, y, z] == BlockType.AIR) continue;
+					if (_blocks[x, y, z] == Block.BlockType.AIR) continue;
 					
-					if (y == chunkHeight - 1 || blocks[x,y+1,z] == BlockType.AIR) // Top
+					if (y == CHUNK_HEIGHT - 1 || _blocks[x,y+1,z] == Block.BlockType.AIR) // Top
 					{
-						st.AddTriangleFan(new[] {new Vector3(x,y+1,z), new Vector3(x+1,y+1,z), new Vector3(x+1,y+1,z+1), new Vector3(x,y+1,z+1)}, getSurfaceUVs(blocks[x,y,z]));
+						st.AddTriangleFan(new[] {new Vector3(x,y+1,z+1), new Vector3(x,y+1,z), new Vector3(x+1,y+1,z), new Vector3(x+1,y+1,z+1)}, Block.blockDict[_blocks[x,y,z]].GetUVs(0));
 					}
-					if (y == 0 || blocks[x,y-1,z] == BlockType.AIR) // Bottom
+					if (y == 0 || _blocks[x,y-1,z] == Block.BlockType.AIR) // Bottom
 					{
-						st.AddTriangleFan(new[] {new Vector3(x,y,z), new Vector3(x,y,z+1), new Vector3(x+1,y,z+1), new Vector3(x+1,y,z)}, getSurfaceUVs(blocks[x,y,z]));
+						st.AddTriangleFan(new[] {new Vector3(x,y,z), new Vector3(x,y,z+1), new Vector3(x+1,y,z+1), new Vector3(x+1,y,z)}, Block.blockDict[_blocks[x,y,z]].GetUVs(1));
 					}
-					if (x == 0 || blocks[x-1,y,z] == BlockType.AIR) // Left
+					if (x == 0 || _blocks[x-1,y,z] == Block.BlockType.AIR) // Left
 					{
-						st.AddTriangleFan(new[] {new Vector3(x,y,z+1), new Vector3(x,y,z), new Vector3(x,y+1,z), new Vector3(x,y+1,z+1)}, getSurfaceUVs(blocks[x,y,z]));
+						st.AddTriangleFan(new[] {new Vector3(x,y,z), new Vector3(x,y+1,z), new Vector3(x,y+1,z+1), new Vector3(x,y,z+1)}, Block.blockDict[_blocks[x,y,z]].GetUVs(3));
 					}
-					if (x == chunkWidth - 1 || blocks[x+1,y,z] == BlockType.AIR) // Right
+					if (x == CHUNK_WIDTH - 1 || _blocks[x+1,y,z] == Block.BlockType.AIR) // Right
 					{
-						st.AddTriangleFan(new[] {new Vector3(x+1,y,z), new Vector3(x+1,y,z+1), new Vector3(x+1,y+1,z+1), new Vector3(x+1,y+1,z)}, getSurfaceUVs(blocks[x,y,z]));
+						st.AddTriangleFan(new[] {new Vector3(x+1,y,z+1), new Vector3(x+1,y+1,z+1), new Vector3(x+1,y+1,z), new Vector3(x+1,y,z)}, Block.blockDict[_blocks[x,y,z]].GetUVs(5));
 					}
-					if (z == 0 || blocks[x,y,z-1] == BlockType.AIR) // Front
+					if (z == 0 || _blocks[x,y,z-1] == Block.BlockType.AIR) // Back
 					{
-						st.AddTriangleFan(new[] {new Vector3(x,y,z), new Vector3(x+1,y,z), new Vector3(x+1,y+1,z), new Vector3(x,y+1,z)}, getSurfaceUVs(blocks[x,y,z]));
+						st.AddTriangleFan(new[] {new Vector3(x+1,y,z), new Vector3(x+1,y+1,z), new Vector3(x,y+1,z), new Vector3(x,y,z)}, Block.blockDict[_blocks[x,y,z]].GetUVs(2));
 					}
-					if (z == chunkDepth - 1 || blocks[x,y,z+1] == BlockType.AIR) // Back
+					if (z == CHUNK_DEPTH - 1 || _blocks[x,y,z+1] == Block.BlockType.AIR) // Front
 					{
-						st.AddTriangleFan(new[] {new Vector3(x,y,z+1), new Vector3(x,y+1,z+1), new Vector3(x+1,y+1,z+1), new Vector3(x+1,y,z+1)}, getSurfaceUVs(blocks[x,y,z]));
+						st.AddTriangleFan(new[] {new Vector3(x,y,z+1), new Vector3(x,y+1,z+1), new Vector3(x+1,y+1,z+1), new Vector3(x+1,y,z+1)}, Block.blockDict[_blocks[x,y,z]].GetUVs(4));
 					}
 
 				}
@@ -92,28 +95,5 @@ public class Chunk : Node
 		st.Index();
 		st.GenerateNormals();
 		chunkMeshInstance.Mesh = st.Commit();
-	}
-
-	private Vector2[] getSurfaceUVs(BlockType blockType)
-	{
-		switch (blockType)
-		{
-			case BlockType.STONE:
-				return new Vector2[]
-				{
-					new Vector2(0.0625f,1),
-					new Vector2(0.125f,1),
-					new Vector2(0.125f,0.9375f),
-					new Vector2(0.0625f,0.9375f),
-				};
-			default:
-				return new Vector2[]
-				{
-					new Vector2(0,0),
-					new Vector2(0,0.0625f),
-					new Vector2(0.0625f,0.0625f),
-					new Vector2(0.0625f,0), 
-				};
-		}
 	}
 }

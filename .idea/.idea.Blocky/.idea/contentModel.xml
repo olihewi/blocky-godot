@@ -14,6 +14,7 @@
           </e>
         </e>
       </e>
+      <e p="Block.cs" t="Include" />
       <e p="Blocky.csproj" t="IncludeRecursive" />
       <e p="Blocky.sln" t="IncludeFlat" />
       <e p="Chunk.cs" t="Include" />
