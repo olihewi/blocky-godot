@@ -1,0 +1,8 @@
+F:\Games\Godot\Blocky\.mono\temp\bin\Debug\Blocky.dll
+F:\Games\Godot\Blocky\.mono\temp\bin\Debug\Blocky.pdb
+F:\Games\Godot\Blocky\.mono\temp\obj\Debug\Blocky.csprojAssemblyReference.cache
+F:\Games\Godot\Blocky\.mono\temp\obj\Debug\Blocky.AssemblyInfoInputs.cache
+F:\Games\Godot\Blocky\.mono\temp\obj\Debug\Blocky.AssemblyInfo.cs
+F:\Games\Godot\Blocky\.mono\temp\obj\Debug\Blocky.csproj.CoreCompileInputs.cache
+F:\Games\Godot\Blocky\.mono\temp\obj\Debug\Blocky.dll
+F:\Games\Godot\Blocky\.mono\temp\obj\Debug\Blocky.pdb
