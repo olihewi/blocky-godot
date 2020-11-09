@@ -21,6 +21,7 @@
       <e p="FastNoise.cs" t="Include" />
       <e p="Orbit.cs" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
+      <e p="World.cs" t="Include" />
     </e>
   </component>
 </project>
