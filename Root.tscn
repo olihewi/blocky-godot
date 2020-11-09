@@ -14,7 +14,12 @@ script = ExtResource( 1 )
 [node name="ChunkMesh" type="MeshInstance" parent="Chunk"]
 
 [node name="Camera Orbit" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 24, 24 )
 script = ExtResource( 2 )
+cameraMoveSpeed = 20.0
 
-[node name="Camera" type="Camera" parent="Camera Orbit"]
-transform = Transform( -1, 1.62921e-07, -2.82187e-07, 0, 0.866025, 0.5, 3.25841e-07, 0.5, -0.866025, 24, 24, -24 )
+[node name="Rotation Helper" type="Spatial" parent="Camera Orbit"]
+
+[node name="Camera" type="Camera" parent="Camera Orbit/Rotation Helper"]
+fov = 90.0
+far = 8192.0

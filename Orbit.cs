@@ -3,19 +3,90 @@ using System;
 
 public class Orbit : Spatial
 {
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
+	[Export]
+	public float cameraMoveSpeed = 1;
 
-	// Called when the node enters the scene tree for the first time.
+	[Export]
+	public float cameraSensitivity = 1;
+
+	private Spatial rotationHelper;
+	private Spatial camera;
+	private float mouseX = 0;
+	private float mouseY = 0;
+
+	private Vector3 moveVector;
+	private Vector3 _dir;
+
+	private bool mousePressed = false;
+	
 	public override void _Ready()
 	{
-		
+		rotationHelper = GetNode<Spatial>("Rotation Helper");
+		camera = GetNode<Spatial>("Rotation Helper/Camera");
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
+public override void _Input(InputEvent @event)
+{
+	if (@event is InputEventMouseMotion mouseEvent && mousePressed)
 	{
+		rotationHelper.RotateX(Mathf.Deg2Rad(-mouseEvent.Relative.y * cameraSensitivity));
+		RotateY(Mathf.Deg2Rad(-mouseEvent.Relative.x * cameraSensitivity));
+	}
+	
+	if (@event is InputEventMouseButton clickEvent && (ButtonList)clickEvent.ButtonIndex == ButtonList.Left)
+	{
+		if (clickEvent.Pressed)
+		{
+			mousePressed = true;
+			Input.SetMouseMode(Input.MouseMode.Captured);
+		}
+
+		if (!clickEvent.Pressed)
+		{
+			mousePressed = false;
+			Input.SetMouseMode(Input.MouseMode.Visible);
+		}
+	}
+}
+
+public override void _Process(float delta)
+	{
+		_dir = new Vector3();
+		moveVector = new Vector3();
+		Transform aim = camera.GlobalTransform;
+		if (Input.IsActionPressed("Forward"))
+		{
+			moveVector.z -= 1;
+		}
+		if (Input.IsActionPressed("Backwards"))
+		{
+			moveVector.z += 1;
+		}
+		if (Input.IsActionPressed("Left"))
+		{
+			moveVector.x -= 1;
+		}
+		if (Input.IsActionPressed("Right"))
+		{
+			moveVector.x += 1;
+		}
+		if (Input.IsActionPressed("Up"))
+		{
+			moveVector.y += 1;
+		}
+		if (Input.IsActionPressed("Down"))
+		{
+			moveVector.y -= 1;
+		}
+
+		//moveVector = moveVector.Normalized();
+
+		_dir += -aim.basis.z * moveVector.z;
+		_dir += aim.basis.x * moveVector.x;
+		_dir += aim.basis.y * moveVector.y;
 		
+		//Translate(_dir * cameraMoveSpeed * delta);
+		Translate(moveVector * cameraMoveSpeed * delta);
 	}
 }
