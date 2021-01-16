@@ -5,19 +5,23 @@ using Object = Godot.Object;
 
 public class Block : Object
 {
-	public Block(BlockTexture texture)
+	private Block()
+	{
+		textures = new BlockTexture[6] {BlockTexture.STONE,BlockTexture.STONE,BlockTexture.STONE,BlockTexture.STONE,BlockTexture.STONE,BlockTexture.STONE};
+	}
+	private Block(BlockTexture texture)
 	{
 		textures = new BlockTexture[6]{texture,texture,texture,texture,texture,texture};
 	}
-	public Block(BlockTexture topBottom, BlockTexture sides)
+	private Block(BlockTexture topBottom, BlockTexture sides)
 	{
 		textures = new BlockTexture[6]{topBottom,topBottom,sides,sides,sides,sides};
 	}
-	public Block(BlockTexture top, BlockTexture bottom, BlockTexture sides)
+	private Block(BlockTexture top, BlockTexture bottom, BlockTexture sides)
 	{
 		textures = new BlockTexture[6]{top,bottom,sides,sides,sides,sides};
 	}
-	public Block(BlockTexture top, BlockTexture bottom, BlockTexture front, BlockTexture left, BlockTexture back, BlockTexture right)
+	private Block(BlockTexture top, BlockTexture bottom, BlockTexture front, BlockTexture left, BlockTexture back, BlockTexture right)
 	{
 		textures = new BlockTexture[6]{top,bottom,front,left,back,right};
 	}
@@ -108,7 +112,9 @@ public class Block : Object
 		{BlockType.DARK_PRISMARINE,new Block(BlockTexture.DARK_PRISMARINE)},
 		{BlockType.SEA_LANTERN,new Block(BlockTexture.SEA_LANTERN)},
 
-		{BlockType.MAGENTA_GLAZED_TERRACOTTA,new Block(BlockTexture.MAGENTA_GLAZED_TERRACOTTA)}
+		{BlockType.RED_TERRACOTTA,new Block(BlockTexture.RED_TERRACOTTA)},
+		{BlockType.YELLOW_TERRACOTTA,new Block(BlockTexture.YELLOW_TERRACOTTA)},
+		{BlockType.WHITE_TERRACOTTA,new Block(BlockTexture.WHITE_TERRACOTTA)}
 	};
 		
 	public enum BlockType

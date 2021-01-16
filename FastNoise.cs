@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using FNLfloat = System.Single;
 //using FNLfloat = System.Double;
 
-public class FastNoiseLite
+public class FastNoiseLite : Object
 {
 	private const short INLINE = 256; // MethodImplOptions.AggressiveInlining;
 	private const short OPTIMISE = 512; // MethodImplOptions.AggressiveOptimization;
@@ -75,6 +75,7 @@ public class FastNoiseLite
 
 	private int mSeed = 1337;
 	private float mFrequency = 0.01f;
+	public float mAmplitude = 1;
 	private NoiseType mNoiseType = NoiseType.OpenSimplex2;
 	private RotationType3D mRotationType3D = RotationType3D.None;
 	private TransformType3D mTransformType3D = TransformType3D.DefaultOpenSimplex2;
@@ -102,6 +103,14 @@ public class FastNoiseLite
 	public FastNoiseLite(int seed = 1337)
 	{
 		SetSeed(seed);
+	}
+
+	public FastNoiseLite(int _seed, float _frequency, float _amplitude, NoiseType _noiseType = NoiseType.OpenSimplex2)
+	{
+		mSeed = _seed;
+		mFrequency = _frequency;
+		mAmplitude = _amplitude;
+		mNoiseType = _noiseType;
 	}
 
 	/// <summary>
@@ -267,13 +276,13 @@ public class FastNoiseLite
 		switch (mFractalType)
 		{
 			default:
-				return GenNoiseSingle(mSeed, x, y);
+				return GenNoiseSingle(mSeed, x, y)  / 2 + 0.5f;
 			case FractalType.FBm:
-				return GenFractalFBm(x, y);
+				return GenFractalFBm(x, y)  / 2 + 0.5f;
 			case FractalType.Ridged:
-				return GenFractalRidged(x, y);
+				return GenFractalRidged(x, y)  / 2 + 0.5f;
 			case FractalType.PingPong:
-				return GenFractalPingPong(x, y);
+				return GenFractalPingPong(x, y)  / 2 + 0.5f;
 		}
 	}
 

@@ -22,7 +22,6 @@
     <list default="true" id="661282cf-2331-4f67-adeb-62e2426765f8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Blocky/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Blocky/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Blocky/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Blocky/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mono/metadata/ide_messaging_meta.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/ide_messaging_meta.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor_player" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/metadata/scripts_metadata.editor_player" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/bin/Debug/Blocky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/bin/Debug/Blocky.dll" afterDir="false" />
@@ -36,8 +35,13 @@
       <change beforePath="$PROJECT_DIR$/.mono/temp/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/project.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mono/temp/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/.mono/temp/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Block.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Chunk.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Chunk.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FastNoise.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FastNoise.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Orbit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Orbit.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Root.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Root.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/World.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,12 +54,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/FastNoise.cs" />
-        <option value="$PROJECT_DIR$/Orbit.cs" />
         <option value="$PROJECT_DIR$/BlockSide.cs" />
+        <option value="$PROJECT_DIR$/Orbit.cs" />
+        <option value="$PROJECT_DIR$/Feature.cs" />
         <option value="$PROJECT_DIR$/Block.cs" />
-        <option value="$PROJECT_DIR$/World.cs" />
+        <option value="$PROJECT_DIR$/FastNoise.cs" />
         <option value="$PROJECT_DIR$/Chunk.cs" />
+        <option value="$PROJECT_DIR$/Biome.cs" />
+        <option value="$PROJECT_DIR$/World.cs" />
       </list>
     </option>
   </component>
@@ -66,6 +72,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34995976" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30008045" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
@@ -112,6 +120,8 @@
       <workItem from="1604324425280" duration="5792000" />
       <workItem from="1604766914515" duration="1291000" />
       <workItem from="1604920827759" duration="24138000" />
+      <workItem from="1605523035869" duration="5237000" />
+      <workItem from="1608136500603" duration="10301000" />
     </task>
     <servers />
   </component>
@@ -130,27 +140,76 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2517" height="413" key="GridCell.Tab.0.bottom" timestamp="1604948900268">
+    <state width="2517" height="534" key="GridCell.Tab.0.bottom" timestamp="1608147246877">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2517" height="413" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1604948900268" />
-    <state width="2517" height="413" key="GridCell.Tab.0.center" timestamp="1604948900267">
+    <state width="2517" height="534" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.0.center" timestamp="1608147246876">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2517" height="413" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1604948900267" />
-    <state width="2517" height="413" key="GridCell.Tab.0.left" timestamp="1604948900267">
+    <state width="2517" height="534" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246876" />
+    <state width="2517" height="534" key="GridCell.Tab.0.left" timestamp="1608147246876">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2517" height="413" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1604948900267" />
-    <state width="2517" height="413" key="GridCell.Tab.0.right" timestamp="1604948900267">
+    <state width="2517" height="534" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246876" />
+    <state width="2517" height="534" key="GridCell.Tab.0.right" timestamp="1608147246876">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="2517" height="413" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1604948900267" />
+    <state width="2517" height="534" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246876" />
+    <state width="2517" height="534" key="GridCell.Tab.1.bottom" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.1.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.1.center" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.1.center/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.1.left" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.1.left/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.1.right" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.1.right/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.2.bottom" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.2.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.2.center" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.2.center/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.2.left" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.2.left/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.2.right" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.2.right/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.3.bottom" timestamp="1608147246878">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.3.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246878" />
+    <state width="2517" height="534" key="GridCell.Tab.3.center" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.3.center/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.3.left" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.3.left/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
+    <state width="2517" height="534" key="GridCell.Tab.3.right" timestamp="1608147246877">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="2517" height="534" key="GridCell.Tab.3.right/0.0.2560.1440@0.0.2560.1440" timestamp="1608147246877" />
     <state x="781" y="365" key="SettingsEditor" timestamp="1604936243261">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>

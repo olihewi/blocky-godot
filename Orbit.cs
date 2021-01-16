@@ -17,12 +17,13 @@ public class Orbit : Spatial
 	private Vector3 moveVector;
 	private Vector3 _dir;
 
-	private bool mousePressed = false;
+	private bool mousePressed = true;
 	
 	public override void _Ready()
 	{
 		rotationHelper = GetNode<Spatial>("Rotation Helper");
 		camera = GetNode<Spatial>("Rotation Helper/Camera");
+		Input.SetMouseMode(Input.MouseMode.Captured);
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,21 +39,13 @@ public override void _Input(InputEvent @event)
 	{
 		if (clickEvent.Pressed)
 		{
-			mousePressed = true;
 			Input.SetMouseMode(Input.MouseMode.Captured);
-		}
-
-		if (!clickEvent.Pressed)
-		{
-			mousePressed = false;
-			Input.SetMouseMode(Input.MouseMode.Visible);
 		}
 	}
 }
 
 public override void _Process(float delta)
 	{
-		_dir = new Vector3();
 		moveVector = new Vector3();
 		Transform aim = camera.GlobalTransform;
 		if (Input.IsActionPressed("Forward"))
@@ -80,13 +73,11 @@ public override void _Process(float delta)
 			moveVector.y -= 1;
 		}
 
-		//moveVector = moveVector.Normalized();
+		if (Input.IsActionPressed("Sprint"))
+		{
+			moveVector *= 2;
+		}
 
-		_dir += -aim.basis.z * moveVector.z;
-		_dir += aim.basis.x * moveVector.x;
-		_dir += aim.basis.y * moveVector.y;
-		
-		//Translate(_dir * cameraMoveSpeed * delta);
 		Translate(moveVector * cameraMoveSpeed * delta);
 	}
 }

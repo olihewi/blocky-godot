@@ -13,7 +13,8 @@ shadow_enabled = true
 [node name="Camera Orbit" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 24, 24 )
 script = ExtResource( 2 )
-cameraMoveSpeed = 20.0
+cameraMoveSpeed = 10.0
+cameraSensitivity = 0.5
 
 [node name="Rotation Helper" type="Spatial" parent="Camera Orbit"]
 
@@ -23,6 +24,7 @@ far = 8192.0
 
 [node name="World" type="Spatial" parent="."]
 script = ExtResource( 3 )
+renderDistance = 16
 
 [node name="Chunk" parent="World" instance=ExtResource( 1 )]
 visible = false

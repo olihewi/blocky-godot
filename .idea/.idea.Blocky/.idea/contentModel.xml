@@ -14,11 +14,13 @@
           </e>
         </e>
       </e>
+      <e p="Biome.cs" t="Include" />
       <e p="Block.cs" t="Include" />
       <e p="Blocky.csproj" t="IncludeRecursive" />
       <e p="Blocky.sln" t="IncludeFlat" />
       <e p="Chunk.cs" t="Include" />
       <e p="FastNoise.cs" t="Include" />
+      <e p="Feature.cs" t="Include" />
       <e p="Orbit.cs" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="World.cs" t="Include" />
